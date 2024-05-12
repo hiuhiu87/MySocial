@@ -2,6 +2,7 @@ package com.mysocial.server.entity;
 
 import com.mysocial.server.entity.base.BaseEntity;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -23,6 +24,7 @@ import org.hibernate.annotations.DynamicUpdate;
 public class Saved extends BaseEntity {
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private UserSocial userSocial;
 
     @ManyToOne

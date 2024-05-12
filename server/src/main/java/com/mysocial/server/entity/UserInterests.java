@@ -1,8 +1,6 @@
 package com.mysocial.server.entity;
 
 import com.mysocial.server.entity.base.BaseEntity;
-import com.mysocial.server.infrastructure.constant.EntityProperties;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -13,7 +11,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.Nationalized;
 
 @Getter
 @Setter
@@ -21,25 +18,17 @@ import org.hibernate.annotations.Nationalized;
 @NoArgsConstructor
 @ToString
 @DynamicUpdate
-@Table(name = "comment")
+@Table(name = "user_interests")
 @Entity
-public class Comment extends BaseEntity {
+public class UserInterests extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserSocial userSocial;
 
     @ManyToOne
-    private Post post;
+    @JoinColumn(name = "interest_id")
+    private Interests interests;
 
-    @Nationalized
-    @Column(length = EntityProperties.LENGTH_DESCRIPTION)
-    private String content;
-
-    @Column(length = EntityProperties.LENGTH_EMAIL)
-    private String image;
-
-    @ManyToOne
-    private Comment parent;
-
+    private Boolean isShow;
 }

@@ -1,9 +1,10 @@
 package com.mysocial.server.entity;
 
 import com.mysocial.server.entity.base.BaseEntity;
-import com.mysocial.server.infrastructure.constant.EntityProperties;
-import jakarta.persistence.Column;
+import com.mysocial.server.infrastructure.constant.EmotionType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -13,7 +14,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.Nationalized;
 
 @Getter
 @Setter
@@ -21,25 +21,19 @@ import org.hibernate.annotations.Nationalized;
 @NoArgsConstructor
 @ToString
 @DynamicUpdate
-@Table(name = "comment")
+@Table(name = "emotion_comment")
 @Entity
-public class Comment extends BaseEntity {
+public class EmotionComment extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserSocial userSocial;
 
     @ManyToOne
-    private Post post;
+    @JoinColumn(name = "comment_id")
+    private Comment comment;
 
-    @Nationalized
-    @Column(length = EntityProperties.LENGTH_DESCRIPTION)
-    private String content;
-
-    @Column(length = EntityProperties.LENGTH_EMAIL)
-    private String image;
-
-    @ManyToOne
-    private Comment parent;
+    @Enumerated(EnumType.STRING)
+    private EmotionType emotionType;
 
 }
