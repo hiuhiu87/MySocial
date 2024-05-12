@@ -27,7 +27,6 @@ public class UserCommunity extends BaseEntity {
     private UserSocial userSocial;
 
     @ManyToOne
-    @JoinColumn(name = "community_id")
     private Community community;
 
     private Boolean isOwner;

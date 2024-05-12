@@ -1,18 +1,12 @@
-package com.mysocial.server.entity;
+package com.mysocial.tool.content.info;
 
-import com.mysocial.server.entity.base.BaseEntity;
 import com.mysocial.server.infrastructure.constant.EntityProperties;
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Nationalized;
 
 @Getter
@@ -20,16 +14,13 @@ import org.hibernate.annotations.Nationalized;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@DynamicUpdate
-@Table(name = "user_social")
-@Entity
-public class UserSocial extends BaseEntity {
+public class UserSocialInfo {
 
     @Nationalized
     @Column(length = EntityProperties.LENGTH_NAME)
     private String fullName;
 
-    @Column(length = EntityProperties.LENGTH_EMAIL, unique = true)
+    @Column(length = EntityProperties.LENGTH_EMAIL)
     private String email;
 
     private String password;
